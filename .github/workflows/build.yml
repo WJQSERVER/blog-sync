@@ -1,0 +1,55 @@
+name: Build
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - 'main'
+    paths:
+      - 'VERSION'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      OUTPUT_BINARY: blog-sync
+      OUTPUT_ARCHIVE: blog-sync.tar.gz
+      GO_VERSION: 1.23.1
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Load VERSION
+        run: |
+          if [ -f VERSION ]; then
+            echo "VERSION=$(cat VERSION)" >> $GITHUB_ENV
+          else
+            echo "VERSION file not found!" && exit 1
+          fi
+      - name: Set up Go
+        uses: actions/setup-go@v3
+        with:
+          go-version: ${{ env.GO_VERSION }}
+      - name: Build
+        run: |
+          go build -o  ${{ env.OUTPUT_BINARY }} ./main.go
+      - name: Package
+        run: |
+          tar -czvf ${{ env.OUTPUT_ARCHIVE }} ./${{ env.OUTPUT_BINARY }}
+      - name: Upload to GitHub Artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: ${{ env.OUTPUT_BINARY }}
+          path: |
+            ./${{ env.OUTPUT_ARCHIVE }}
+            ./${{ env.OUTPUT_BINARY }}
+      - name: 上传至Release
+        id: create_release
+        uses: ncipollo/release-action@v1
+        with:
+          name: ${{ env.VERSION }}
+          artifacts: ./${{ env.OUTPUT_ARCHIVE }}, ./${{ env.OUTPUT_BINARY }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+          tag: ${{ env.VERSION }}
+          allowUpdates: true
+        env:
+          export PATH: $PATH:/usr/local/go/bin     

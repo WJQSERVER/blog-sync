@@ -1,1 +1,1 @@
-# blog-sync
+# Blog-Sync

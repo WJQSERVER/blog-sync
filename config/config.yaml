@@ -1,0 +1,7 @@
+logfilepath: "/root/data/blog-sync/log/run.log"
+downloadurl: "https://download.wjqserver.pro/hugo.tar.gz"
+username: "wjqserver"
+password: "test"
+savepath: "/root/data/web/hugo.zip"
+unzip_dir: "/root/data/web/hugo"
+base_url: "https://example.com"
