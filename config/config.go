@@ -7,13 +7,14 @@ import (
 )
 
 type Config struct {
-	LogFilePath string `yaml:"logfilepath"`
-	DownloadUrl string `yaml:"downloadurl"`
-	Username    string `yaml:"username"`
-	Password    string `yaml:"password"`
-	SavePath    string `yaml:"savepath"`
-	Unzipdir    string `yaml:"unzip_dir"`
-	BaseURL     string `yaml:"base_url"`
+	LogFilePath   string `yaml:"logfilepath"`
+	DownloadUrl   string `yaml:"downloadurl"`
+	Username      string `yaml:"username"`
+	Password      string `yaml:"password"`
+	SavePath      string `yaml:"savepath"`
+	Unzipdir      string `yaml:"unzip_dir"`
+	BaseURL       string `yaml:"base_url"`
+	CycleInterval int    `yaml:"cycle_interval"`
 }
 
 // LoadConfig 从 YAML 配置文件加载配置

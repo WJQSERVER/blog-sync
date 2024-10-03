@@ -36,21 +36,26 @@ func setupLogger() {
 	logw("Init Completed")
 }
 
+func setupSchedule() {
+	schedule.Init(cfg.CycleInterval)
+}
+
 func init() {
 	loadConfig()
 	setupLogger()
+	setupSchedule()
 }
 
 func main() {
 	defer logger.Close() // 确保在退出时关闭日志文件
-	go schedule.ScheduleHourly(func() {
+	go schedule.Schedule(func() {
 		err := download.DownloadFile(cfg.DownloadUrl, cfg.Username, cfg.Password, cfg.SavePath, cfg.Unzipdir)
 		if err != nil {
 			logw("下载文件时出错: %v", err) // 处理错误
 		}
 	})
 
-	go schedule.ScheduleHourly10(func() {
+	go schedule.Schedule(func() {
 		var sleep int
 		sleep = 5
 		logw("开始执行hugo构建任务，等待%d分钟", sleep)

@@ -5,3 +5,4 @@ password: "test"
 savepath: "/root/data/web/hugo.zip"
 unzip_dir: "/root/data/web/hugo"
 base_url: "https://example.com"
+cycle_interval: 180 #minutes
