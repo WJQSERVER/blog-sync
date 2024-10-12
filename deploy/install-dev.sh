@@ -1,7 +1,7 @@
 # /bin/bash
 
 # 检查是否安装前置hugo
-if! command -v hugo &> /dev/null; then
+if ! command -v hugo &> /dev/null; then
   echo "Hugo 未安装，请先安装hugo"
   exit 1
 fi
@@ -17,7 +17,7 @@ wget -O /root/data/blog-sync/blog-sync https://github.com/WJQSERVER/blog-sync/re
 chmod +x /root/data/blog-sync/blog-sync
 
 # 配置文件
-if [! -f /root/data/blog-sync/config/config.toml ]; then
+if [ ! -f /root/data/blog-sync/config/config.toml ]; then
     wget -O /root/data/blog-sync/config/config.toml https://raw.githubusercontent.com/WJQSERVER/blog-sync/main/config/config.toml
 fi
 
