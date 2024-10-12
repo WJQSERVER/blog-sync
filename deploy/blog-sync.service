@@ -3,7 +3,7 @@ Description=Blog Sync Service
 After=network.target
 
 [Service]
-ExecStart=、bin/bash -c '/root/data/blog-sync/blog-sync > /root/data/blog-sync/log/run.log 2>&1'
+ExecStart=/bin/bash -c '/root/data/blog-sync/blog-sync > /root/data/blog-sync/log/run.log 2>&1'
 Restart=on-failure
 User=root
 WorkingDirectory=/root/data/blog-sync
