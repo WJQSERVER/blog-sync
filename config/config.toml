@@ -1,5 +1,6 @@
 [server]
 cycle_interval = 180 #minutes
+build_wait_time = 1 #minutes
 
 [log]
 logfilepath = "/root/data/blog-sync/log/blog-sync.log"

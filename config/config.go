@@ -13,6 +13,7 @@ type Config struct {
 
 type ServerConfig struct {
 	CycleInterval int `toml:"cycle_interval"`
+	BuildWaitTime int `toml:"build_wait_time"`
 }
 
 type LogConfig struct {

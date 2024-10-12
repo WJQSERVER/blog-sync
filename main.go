@@ -72,10 +72,8 @@ func main() {
 	})
 
 	go schedule.Schedule(func() {
-		var sleep int
-		sleep = 5
-		logw("开始执行hugo构建任务，等待%d分钟", sleep)
-		time.Sleep(time.Duration(sleep) * time.Minute)
+		logw("开始执行hugo构建任务，等待%d分钟", cfg.Server.BuildWaitTime)
+		time.Sleep(time.Duration(cfg.Server.BuildWaitTime) * time.Minute)
 		err := build.Build(cfg.Hugo.UnzipDir, cfg.Hugo.BaseUrl)
 		if err != nil {
 			logw("Hugo执行构建任务时出错: %v", err) // 处理错误
