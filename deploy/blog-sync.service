@@ -1,0 +1,14 @@
+[Unit]
+Description=Blog Sync Service
+After=network.target
+
+[Service]
+ExecStart=/root/data/blog-sync/blog-sync
+Restart=on-failure
+User=root
+WorkingDirectory=/root/data/blog-sync
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target

@@ -3,6 +3,7 @@ module blog-sync
 go 1.23.1
 
 require (
+	github.com/BurntSushi/toml v1.4.0 // indirect
 	github.com/andybalholm/brotli v1.1.0 // indirect
 	github.com/cloudflare/circl v1.4.0 // indirect
 	github.com/go-task/slim-sprig/v3 v3.0.0 // indirect

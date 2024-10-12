@@ -1,0 +1,16 @@
+[server]
+cycle_interval = 180 #minutes
+
+[log]
+logfilepath = "/root/data/blog-sync/log/blog-sync.log"
+maxlogsize = 5 # MB
+
+[download]
+downloadurl = "https://download.wjqserver.pro/hugo.tar.gz"
+username = "wjqserver"
+password = "test"
+savepath = "/root/data/blog-sync/hugo.tar.gz"
+
+[hugo]
+base_url = "https://example.com"
+unzip_dir = "/root/data/blog-sync/web"

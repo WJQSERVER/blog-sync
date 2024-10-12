@@ -1,31 +1,41 @@
 package config
 
 import (
-	"os"
-
-	"gopkg.in/yaml.v3"
+	"github.com/BurntSushi/toml"
 )
 
 type Config struct {
-	LogFilePath   string `yaml:"logfilepath"`
-	DownloadUrl   string `yaml:"downloadurl"`
-	Username      string `yaml:"username"`
-	Password      string `yaml:"password"`
-	SavePath      string `yaml:"savepath"`
-	Unzipdir      string `yaml:"unzip_dir"`
-	BaseURL       string `yaml:"base_url"`
-	CycleInterval int    `yaml:"cycle_interval"`
+	Server   ServerConfig
+	Log      LogConfig
+	Download DownloadConfig
+	Hugo     HugoConfig
 }
 
-// LoadConfig 从 YAML 配置文件加载配置
+type ServerConfig struct {
+	CycleInterval int `toml:"cycle_interval"`
+}
+
+type LogConfig struct {
+	LogFilePath string `toml:"logfilepath"`
+	MaxLogSize  int    `toml:"maxlogsize"`
+}
+
+type DownloadConfig struct {
+	DownloadUrl string `toml:"downloadurl"`
+	Username    string `toml:"username"`
+	Password    string `toml:"password"`
+	SavePath    string `toml:"savepath"`
+}
+
+type HugoConfig struct {
+	BaseUrl  string `toml:"base_url"`
+	UnzipDir string `toml:"unzip_dir"`
+}
+
+// LoadConfig 从 TOML 配置文件加载配置
 func LoadConfig(filePath string) (*Config, error) {
 	var config Config
-	data, err := os.ReadFile(filePath)
-	if err != nil {
-		return nil, err
-	}
-	err = yaml.Unmarshal(data, &config)
-	if err != nil {
+	if _, err := toml.DecodeFile(filePath, &config); err != nil {
 		return nil, err
 	}
 	return &config, nil
