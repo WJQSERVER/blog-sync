@@ -13,6 +13,7 @@ mkdir -p /root/data/blog-sync/web
 
 # 拉取主程序
 VERSION=$(curl -s https://raw.githubusercontent.com/WJQSERVER/blog-sync/main/DEV-VERSION)
+wget -O /root/data/blog-sync/VERSION https://raw.githubusercontent.com/WJQSERVER/blog-sync/main/DEV-VERSION
 wget -O /root/data/blog-sync/blog-sync https://github.com/WJQSERVER/blog-sync/releases/download/$VERSION/blog-sync
 chmod +x /root/data/blog-sync/blog-sync
 
