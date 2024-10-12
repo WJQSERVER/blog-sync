@@ -25,6 +25,7 @@ fi
 wget -O /etc/systemd/system/blog-sync.service https://raw.githubusercontent.com/WJQSERVER/blog-sync/main/deploy/blog-sync.service
 
 # 启动服务
+systemctl daemon-reload
 systemctl enable blog-sync
 systemctl start blog-sync
 systemctl restart blog-sync
